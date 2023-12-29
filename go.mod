@@ -1,4 +1,4 @@
-module golist
+module github.com/lxma/golist
 
 go 1.21
 
