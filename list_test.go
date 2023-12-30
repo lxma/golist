@@ -7,7 +7,7 @@ import (
 
 func TestBasicFunctionality(t *testing.T) {
 	nilElt := (*Element[int])(nil)
-	l := MakeList([]int{1, 2, 3}...)
+	l := MakeList(1, 2, 3)
 
 	elt := l.Front()
 	assert.Equal(t, 1, elt.Value())
@@ -34,8 +34,8 @@ func TestBasicFunctionality(t *testing.T) {
 	assert.Equal(t, 0, l.Len())
 	assert.Equal(t, l, l2)
 
-	l = MakeList([]int{1, 2}...)
-	l2 = MakeList([]int{3, 4}...)
+	l = MakeList(1, 2)
+	l2 = MakeList(3, 4)
 	l.PushBackList(l2)
 	assert.Equal(t, []int{1, 2, 3, 4}, l.ToSlice())
 	l.PushFrontList(l2)
@@ -49,31 +49,31 @@ func TestBasicFunctionality(t *testing.T) {
 	assert.Equal(t, nilElt, l.Front().Next())
 	assert.Equal(t, nilElt, l.Front().Prev())
 
-	l = MakeList([]int{1, 2, 3}...)
+	l = MakeList(1, 2, 3)
 	l.InsertBefore(8, l.Back())
 	assert.Equal(t, []int{1, 2, 8, 3}, l.ToSlice())
 	l.InsertAfter(9, l.Front())
 	assert.Equal(t, []int{1, 9, 2, 8, 3}, l.ToSlice())
 
-	l = MakeList([]int{1, 2, 3}...)
+	l = MakeList(1, 2, 3)
 	l.MoveBefore(l.Front(), l.Back())
 	assert.Equal(t, []int{2, 1, 3}, l.ToSlice())
 
-	l = MakeList([]int{1, 2, 3}...)
+	l = MakeList(1, 2, 3)
 	l.MoveAfter(l.Back(), l.Front())
 	assert.Equal(t, []int{1, 3, 2}, l.ToSlice())
 
-	l = MakeList([]int{1, 2, 3}...)
+	l = MakeList(1, 2, 3)
 	l.MoveToFront(l.Back())
 	assert.Equal(t, []int{3, 1, 2}, l.ToSlice())
 
-	l = MakeList([]int{1, 2, 3}...)
+	l = MakeList(1, 2, 3)
 	l.MoveToBack(l.Front())
 	assert.Equal(t, []int{2, 3, 1}, l.ToSlice())
 }
 
 func TestLoopThroughList(t *testing.T) {
-	l := MakeList([]int{1, 2, 3}...)
+	l := MakeList(1, 2, 3)
 	results := make([]int, 0)
 
 	for l.Len() > 0 {
@@ -84,7 +84,7 @@ func TestLoopThroughList(t *testing.T) {
 }
 
 func TestLoopThroughListBackward(t *testing.T) {
-	l := MakeList([]int{1, 2, 3}...)
+	l := MakeList(1, 2, 3)
 	results := make([]int, 0)
 
 	for l.Len() > 0 {

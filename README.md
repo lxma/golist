@@ -1,16 +1,16 @@
 # golist
 Typed lists for Go
 
-This is an attempt for typed lists in Go. Basically, this is about how (in my opionon) lists should have been
-designed in the first place.
+This is an attempt for typed lists in Go. Basically, this is about how (in my opionon)
+lists should have been designed in the first place. My expectation is that sooner or later,
+typed lists will be part of the Go standard library. Until then this is a substitute, as I
+find working with untyped lists unnecessarily cumbersome and error prone.
 
-The implementation merely wraps (untyped) Go standard lists. I used the same methodology and method names 
-as found there and I followed the signatures of the methods as far as they made sense.
+The implementation merely wraps (untyped) Go standard lists. This library uses the same
+methodology and method names as found there and follows the signatures of those methods
+as far as they make sense (in the context of typed lists).
 
-My expectation is that sooner or later, typed lists will be part of the Go standard library.
-Until then this is a substitute, as I find working with untyped lists unnecessarily cumbersome and error prone.
-
-I added some methods to make life a little easier (for typed lists):
+Some methods were added to make life a little easier (for typed lists):
 
 ```go
 func (l *List[T]) PopFront() T
@@ -30,3 +30,12 @@ Also, I added the method
 func (e *Element[T]) Value() T
 ```
 to actually retrieve a value from an element.
+
+# Iterator
+In addition we return an `Iter()` method which returns a channel that delivers the elements of
+that list that permits iteration. Note: the list must not be modified during this iteration.  
+```go
+for value := range lst.Iter() {
+    fmt.Print(value)
+}
+```
