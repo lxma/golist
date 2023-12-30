@@ -11,25 +11,19 @@ methodology and method names as found there and follows the signatures of those 
 as far as they make sense (in the context of typed lists).
 
 Some methods were added to make life a little easier (for typed lists):
-
 ```go
 func (l *List[T]) PopFront() T
 func (l *List[T]) PopBack() T 
 ```
 to get the first (rsp. last) value of a list and remove the corresponding element. Both methods will panic
 in case the List is empty.
-
 ```go
 func MakeList[T any](values ...T) *List[T]
 func (l *List[T]) ToSlice() []T 
 ```
 to create a list from a slice (or from single values) and to turn a list into a slice.
 
-Also, I added the method  
-```go
-func (e *Element[T]) Value() T
-```
-to actually retrieve a value from an element.
+The method `Value()` was added to `Element` to actually retrieve a value from an element.
 
 # Iterator
 In addition we return an `Iter()` method which returns a channel that delivers the elements of
