@@ -26,10 +26,12 @@ to create a list from a slice (or from single values) and to turn a list into a 
 The method `Value()` was added to `Element` to actually retrieve a value from an element.
 
 # Iterator
-In addition we return an `Iter()` method which returns a channel that delivers the elements of
-that list that permits iteration. Note: the list must not be modified during this iteration.  
+In addition, a Java style iterator is provided (also type-safe). It can be used like:
 ```go
-for value := range lst.Iter() {
-    fmt.Print(value)
+iter := MakeList(1, 2, 3, 4).Iterator()
+for iter.HasNext() {
+    fmt.Printf("%d\n", iter.Next())
 }
 ```
+Java style iterators are preferred over `Iter()` returning a channel as we concern the latter
+to be prone to create stale goroutines.
