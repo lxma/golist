@@ -39,3 +39,14 @@ func TestListIterator_Remove(t *testing.T) {
 	}
 	assert.Equal(t, []int{1, 3}, lst.ToSlice())
 }
+
+func TestListIterator_ForEachRemaining(t *testing.T) {
+	iter := MakeList(1, 2, 3, 4).Iterator()
+	slc := make([]int, 0)
+	iter.Next()
+	iter.ForEachRemaining(func(n int) {
+		slc = append(slc, n)
+	})
+	assert.Equal(t, []int{2, 3, 4}, slc)
+
+}
